@@ -15,9 +15,11 @@ void setup()
   size(800, 600);
   width = 800;
   height = 600;
-  x_pos = width/2-rect_size/2;
-  y_pos = height/2-rect_size/2;
-  rand_speed = random(10);
+  
+  rectMode(CENTER);
+  x_pos = width/2;
+  y_pos = height/2;
+  rand_speed = random(5, 10);
   rand_dir = random(359);
   x_speed = int(rand_speed*cos(radians(rand_dir)));
   y_speed = int(rand_speed*sin(radians(rand_dir)));
@@ -37,11 +39,11 @@ void draw()
   
   if(x_pos <= 0 || x_pos >= width)
   {
-    x_pos *= -1;
+    x_speed *= -1;
   }
   if(y_pos <= 0 || y_pos >= height)
   {
-    y_pos *= -1;
+    y_speed *= -1;
   }
   
   if(keyPressed)
