@@ -5,8 +5,8 @@ int height;
 int rect_size = 20;
 int x_pos;
 int y_pos;
-int x_speed;
-int y_speed;
+double x_speed;
+double y_speed;
 float rand_speed;
 float rand_dir;
 
@@ -20,9 +20,9 @@ void setup()
   x_pos = width/2;
   y_pos = height/2;
   rand_speed = random(5, 10);
-  rand_dir = random(359);
-  x_speed = int(rand_speed*cos(radians(rand_dir)));
-  y_speed = int(rand_speed*sin(radians(rand_dir)));
+  rand_dir = random(360);
+  x_speed = (rand_speed*cos(radians(rand_dir)));
+  y_speed = (rand_speed*sin(radians(rand_dir)));
 }
 
 void draw()
@@ -34,15 +34,17 @@ void draw()
   fill(255,0,0);
   rect(x_pos, y_pos, rect_size, rect_size);
   
-  x_pos += x_speed;
-  y_pos += y_speed;
+  x_pos += (int)x_speed;
+  y_pos += (int)y_speed;
   
   if(x_pos <= 0 || x_pos >= width)
   {
+    giggle();
     x_speed *= -1;
   }
   if(y_pos <= 0 || y_pos >= height)
   {
+    giggle();
     y_speed *= -1;
   }
   
@@ -57,4 +59,10 @@ void draw()
       x_pos += 5;
     }
   }
+}
+
+void giggle()
+{
+  x_speed += random(.5);
+  y_speed += random(.5);
 }
